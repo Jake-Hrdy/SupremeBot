@@ -34,7 +34,34 @@ class SupremeBot:
         self.browser.find_option_by_text(self.info["size"]).click() # select correct size
         self.browser.find_by_xpath("//*[@id='add-remove-buttons']/input").click() # add to cart
 
-        
+    def checkout(self):
+        try:
+            self.browser.visit("{}{}".format(self.base, self.checkout_ext)) # go to checkout page
+
+            # fill out order form
+            self.browser.fill("order[billing_name]", self.info["namefield"])
+            self.browser.fill("order[email]", self.info["emailfield"])
+            self.browser.fill("order[tel]", self.info["phonefield"])
+
+            self.browser.fill("order[billing_address]", self.info["addressfield"])
+            self.browser.fill("order[billing_address_2]", self.info["apt/unit"])
+            self.browser.fill("order[billing_zip]", self.info["zip"])
+            self.browser.fill("order[billing_city]", self.info["city"])
+            self.browser.select("order[billing_state]", self.info["state"])
+            self.browser.select("order[billing_country]", self.info["country"])
+
+            self.browser.fill("riearmxa", self.info["number"])
+            self.browser.select("credit_card[month]", self.info["month"])
+            self.browser.select("credit_card[year]", self.info["year"])
+            self.browser.fill("credit_card[meknk]", self.info["ccv"])
+
+            # check the terms and conditions and complete order
+            self.browser.find_by_css(".terms").click()
+            # self.browser.find_by_value("process payment").click()
+        except:
+            print("Could not process payment/complete your order.")
+
+
 if __name__ == "__main__":
     # set product info
     info = {
@@ -42,14 +69,15 @@ if __name__ == "__main__":
         "color": "Blue",
         "size": "Large",
         "category": "sweatshirts",
-        "namefield": "example",
+        "namefield": "example name",
         "emailfield": "example@example.com",
-        "phonefield": "XXXXXXXXXX",
+        "phonefield": "123-456-7890",
         "addressfield": "example road",
-        "city": "example",
+        "apt/unit": "",     # optional: put "" if you have none
         "zip": "72046",
-        "country": "GB",
-        "card": "visa",
+        "city": "exampleCity",
+        "state": "AR",
+        "country": "USA",
         "number": "1234123412341234",
         "month": "09",
         "year": "2020",
@@ -79,3 +107,4 @@ if __name__ == "__main__":
     # continue because we found the product
     bot.init_browser()
     bot.visit_site()
+    bot.checkout()
