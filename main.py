@@ -23,7 +23,6 @@ class SupremeBot:
                     temp_link.append(link["href"])
 
             self.final_link = temp_link[0]
-            print(self.final_link)
             return True
 
         except:
@@ -59,24 +58,26 @@ class SupremeBot:
             self.browser.find_by_css(".terms").click()
             # self.browser.find_by_value("process payment").click()
         except:
-            print("Could not process payment/complete your order.")
+            print()
+            print("Could not complete your order.")
+            print()
 
 
 if __name__ == "__main__":
     # set product info
     info = {
-        "product": "Miles Davis Hooded Sweatshirt",
-        "color": "Blue",
+        "product": "Shiny Reversible Puffy Jacket",
+        "color": "Orange",
         "size": "Large",
-        "category": "sweatshirts",
-        "namefield": "example name",
-        "emailfield": "example@example.com",
+        "category": "jackets",
+        "namefield": "Jimmy Buffett",
+        "emailfield": "jim@rockstar.com",
         "phonefield": "123-456-7890",
-        "addressfield": "example road",
+        "addressfield": "Rockstar Lane",
         "apt/unit": "",     # optional: put "" if you have none
-        "zip": "72046",
-        "city": "exampleCity",
-        "state": "AR",
+        "zip": "12345",
+        "city": "Los Angeles",
+        "state": "CA",
         "country": "USA",
         "number": "1234123412341234",
         "month": "09",
@@ -90,14 +91,15 @@ if __name__ == "__main__":
         the product as soon as it's available '''
     found_product = False
     max_iter = 100
-    counter = 1
+    counter = 0
     while not found_product and counter <= max_iter:
         found_product = bot.find_product()
-        if counter == 1:
-            print("Tried ", counter, " time to find product")
-        else:
-            print("Tried ", counter, " times to find product")
         counter += 1
+
+    if counter == 1:
+        print("Tried ", counter, " time to find product.")
+    else:
+        print("Tried ", counter, " times to find product.")
 
     if not found_product:
         # product was never found in the while loop
