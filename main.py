@@ -30,9 +30,11 @@ class SupremeBot:
             False
 
     def visit_site(self):
-        self.browser.visit("{}{}".format(self.base, self.final_link))
+        self.browser.visit("{}{}".format(self.base, self.final_link))   # go to item page
+        self.browser.find_option_by_text(self.info["size"]).click() # select correct size
+        self.browser.find_by_xpath("//*[@id='add-remove-buttons']/input").click() # add to cart
 
-
+        
 if __name__ == "__main__":
     # set product info
     info = {
