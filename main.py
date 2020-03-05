@@ -1,6 +1,7 @@
 import requests
 import bs4
 from splinter import Browser
+from information import info
 
 class SupremeBot:
     def __init__(self, **info):
@@ -57,6 +58,7 @@ class SupremeBot:
             # check the terms and conditions and complete order
             self.browser.find_by_css(".terms").click()
             # self.browser.find_by_value("process payment").click()
+            print(info["product"] + " has been purchased.")
         except:
             print()
             print("Could not complete your order.")
@@ -64,27 +66,6 @@ class SupremeBot:
 
 
 if __name__ == "__main__":
-    # set product info
-    info = {
-        "product": "Shiny Reversible Puffy Jacket",
-        "color": "Orange",
-        "size": "Large",
-        "category": "jackets",
-        "namefield": "Jimmy Buffett",
-        "emailfield": "jim@rockstar.com",
-        "phonefield": "123-456-7890",
-        "addressfield": "Rockstar Lane",
-        "apt/unit": "",     # optional: put "" if you have none
-        "zip": "12345",
-        "city": "Los Angeles",
-        "state": "CA",
-        "country": "USA",
-        "number": "1234123412341234",
-        "month": "09",
-        "year": "2020",
-        "ccv": "123"
-    }
-
     bot = SupremeBot(**info)    # initialize bot
     # ================================================================================
     ''' This will allow you to start the bot right before a drop, so that it will find
@@ -105,7 +86,6 @@ if __name__ == "__main__":
         # product was never found in the while loop
         raise Exception("Product couldn't be found.")
     # ================================================================================
-
     # continue because we found the product
     bot.init_browser()
     bot.visit_site()
