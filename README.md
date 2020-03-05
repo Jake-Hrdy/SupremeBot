@@ -1,5 +1,4 @@
 # SupremeBot
-Enter description here... eventually
 
 <!-- ## What You Need To Do
 * **Download/Use the Google Chrome web browser**
