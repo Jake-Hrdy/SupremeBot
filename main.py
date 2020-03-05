@@ -23,16 +23,20 @@ class SupremeBot:
                 if link.text == self.info["product"] or link.text == self.info["color"]:
                     temp_link.append(link["href"])
 
-            self.final_link = temp_link[0]
-            return True
+            self.final_link = list(set([x for x in temp_link if temp_link.count(x) == 2]))[0]
 
+            return True
         except:
             False
 
     def visit_site(self):
-        self.browser.visit("{}{}".format(self.base, self.final_link))   # go to item page
-        self.browser.find_option_by_text(self.info["size"]).click() # select correct size
-        self.browser.find_by_xpath("//*[@id='add-remove-buttons']/input").click() # add to cart
+        try:
+            self.browser.visit("{}{}".format(self.base, self.final_link))   # go to item page
+            self.browser.find_option_by_text(self.info["size"]).click() # select correct size
+            self.browser.find_by_xpath("//*[@id='add-remove-buttons']/input").click() # add to cart
+        except:
+            print()
+            print("Could not add to cart.")
 
     def checkout(self):
         try:
@@ -58,11 +62,11 @@ class SupremeBot:
             # check the terms and conditions and complete order
             self.browser.find_by_css(".terms").click()
             # self.browser.find_by_value("process payment").click()
+
             print(info["product"] + " has been purchased.")
         except:
             print()
             print("Could not complete your order.")
-            print()
 
 
 if __name__ == "__main__":

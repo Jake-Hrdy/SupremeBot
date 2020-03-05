@@ -1,8 +1,8 @@
 info = {
-        "product": "Shiny Reversible Puffy Jacket",
-        "color": "Orange",
+        "product": "GORE-TEX Pant",
+        "color": "Green",
         "size": "Large",
-        "category": "jackets",
+        "category": "pants",
         "namefield": "Jimmy Buffett",
         "emailfield": "jim@rockstar.com",
         "phonefield": "123-456-7890",
