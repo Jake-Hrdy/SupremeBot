@@ -1,6 +1,6 @@
 # SupremeBot
 
-<!-- ## What You Need To Do
+## What You Need To Do
 * **Download/Use the Google Chrome web browser**
 * **Create your own information.py file that looks like the following:**
   ```
@@ -28,4 +28,4 @@
   ```
   python3 main.py
   ```
-  *If you're not running python3, make sure to use the correct command to run your python files.* -->
+  *If you're not running python3, make sure to use the correct command to run your python files.*
