@@ -1,7 +1,7 @@
 import requests
 import bs4
 from splinter import Browser
-from information import info
+import information
 
 class SupremeBot:
     def __init__(self, **info):
@@ -36,7 +36,6 @@ class SupremeBot:
                 self.browser.find_option_by_text(self.info["size"]).click() # select correct size
             self.browser.find_by_xpath("//*[@id='add-remove-buttons']/input").click() # add to cart
         except:
-            print()
             print("Could not add to cart.")
 
     def checkout(self):
@@ -49,7 +48,7 @@ class SupremeBot:
             self.browser.fill("order[tel]", self.info["phonefield"])
 
             self.browser.fill("order[billing_address]", self.info["addressfield"])
-            self.browser.fill("order[billing_address_2]", self.info["apt/unit"])
+            self.browser.fill("order[billing_address_2]", self.info["apt"])
             self.browser.fill("order[billing_zip]", self.info["zip"])
             self.browser.fill("order[billing_city]", self.info["city"])
             self.browser.select("order[billing_state]", self.info["state"])
@@ -66,11 +65,30 @@ class SupremeBot:
 
             print(info["product"] + " has been purchased.")
         except:
-            print()
-            print("Could not complete your order.")
+            print("Could not checkout.")
 
 
 if __name__ == "__main__":
+    info = {
+        "product":      information.product,
+        "color":        information.color,
+        "size":         information.size,
+        "category":     information.category,
+        "namefield":    information.namefield,
+        "emailfield":   information.emailfield,
+        "phonefield":   information.phonefield,
+        "addressfield": information.addressfield,
+        "apt":          information.apt,
+        "zip":          information.zip,
+        "city":         information.city,
+        "state":        information.state,
+        "country":      information.country,
+        "number":       information.number,
+        "month":        information.month,
+        "year":         information.year,
+        "ccv":          information.ccv
+    }
+
     bot = SupremeBot(**info)    # initialize bot
     # ================================================================================
     ''' This will allow you to start the bot right before a drop, so that it will find

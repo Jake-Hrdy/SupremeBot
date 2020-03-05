@@ -1,21 +1,19 @@
-info = {
-        "product": "Supreme®/Vanson Leathers® Mesh Back 5-Panel",
-        "color": "White",
-        "size": "",
-        "category": "hats",
-        "namefield": "Jimmy Buffett",
-        "emailfield": "jim@rockstar.com",
-        "phonefield": "123-456-7890",
-        "addressfield": "Rockstar Lane",
-        "apt/unit": "",     # optional: put "" if you have none
-        "zip": "12345",
-        "city": "Los Angeles",
-        "state": "CA",
-        "country": "USA",
-        "number": "1234123412341234",
-        "month": "09",
-        "year": "2020",
-        "ccv": "123"
-    }
+product = "Supreme®/Nike® Air Force 1 Low"
+color = "White"
+size = "10"
+category = "shoes"
+namefield = "Jake Hardy"
+emailfield = "jkhardy12@gmail.com"
+phonefield = "970-775-4308"
+addressfield = "304 Habitat Cove"
+apt = ""            # optional: put "" if you have none
+zip = "80550"
+city = "Windsor"
+state = "CO"
+country = "USA"
+number = "0000000000000000"
+month = "01"
+year = "2020"
+ccv = "123"
 
-    # rights reserved logo --> ®
+# rights reserved logo --> ®
