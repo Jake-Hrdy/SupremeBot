@@ -1,8 +1,8 @@
 info = {
-        "product": "GORE-TEX Pant",
-        "color": "Green",
-        "size": "Large",
-        "category": "pants",
+        "product": "Supreme®/Vanson Leathers® Mesh Back 5-Panel",
+        "color": "White",
+        "size": "",
+        "category": "hats",
         "namefield": "Jimmy Buffett",
         "emailfield": "jim@rockstar.com",
         "phonefield": "123-456-7890",
@@ -17,3 +17,5 @@ info = {
         "year": "2020",
         "ccv": "123"
     }
+
+    # rights reserved logo --> ®

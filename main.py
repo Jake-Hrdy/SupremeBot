@@ -32,7 +32,8 @@ class SupremeBot:
     def visit_site(self):
         try:
             self.browser.visit("{}{}".format(self.base, self.final_link))   # go to item page
-            self.browser.find_option_by_text(self.info["size"]).click() # select correct size
+            if self.info["size"] != "":
+                self.browser.find_option_by_text(self.info["size"]).click() # select correct size
             self.browser.find_by_xpath("//*[@id='add-remove-buttons']/input").click() # add to cart
         except:
             print()
@@ -75,9 +76,9 @@ if __name__ == "__main__":
     ''' This will allow you to start the bot right before a drop, so that it will find
         the product as soon as it's available '''
     found_product = False
-    max_iter = 100
+    max_iter = 20
     counter = 0
-    while not found_product and counter <= max_iter:
+    while not found_product and counter < max_iter:
         found_product = bot.find_product()
         counter += 1
 
