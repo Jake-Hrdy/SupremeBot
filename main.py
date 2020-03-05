@@ -34,9 +34,11 @@ class SupremeBot:
             self.browser.visit("{}{}".format(self.base, self.final_link))   # go to item page
             if self.info["size"] != "":
                 self.browser.find_option_by_text(self.info["size"]).click() # select correct size
-            self.browser.find_by_xpath("//*[@id='add-remove-buttons']/input").click() # add to cart
+            self.browser.find_by_xpath("/html/body/div/div/div[2]/div/form[2]/div/fieldset[1]/input").click() # add to cart
+            return True
         except:
             print("Could not add to cart.")
+            return False
 
     def checkout(self):
         try:
@@ -111,5 +113,5 @@ if __name__ == "__main__":
     # ================================================================================
     # continue because we found the product
     bot.init_browser()
-    bot.visit_site()
-    bot.checkout()
+    if bot.visit_site():
+        bot.checkout()
