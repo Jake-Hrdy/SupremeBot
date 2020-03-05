@@ -33,8 +33,14 @@ class SupremeBot:
         try:
             self.browser.visit("{}{}".format(self.base, self.final_link))   # go to item page
             if self.info["size"] != "":
+                # make sure size select is loaded
+                self.browser.is_element_present_by_text(self.info["size"], wait_time=10)
                 self.browser.find_option_by_text(self.info["size"]).click() # select correct size
-            self.browser.find_by_xpath("/html/body/div/div/div[2]/div/form[2]/div/fieldset[1]/input").click() # add to cart
+            
+            # make sure add to cart button is loaded
+            self.browser.is_element_present_by_value("add to cart", wait_time=10)
+            self.browser.find_by_value("add to cart").click() # add to cart
+
             return True
         except:
             print("Could not add to cart.")
@@ -43,6 +49,9 @@ class SupremeBot:
     def checkout(self):
         try:
             self.browser.visit("{}{}".format(self.base, self.checkout_ext)) # go to checkout page
+
+            # make sure form is loaded
+            self.browser.is_element_present_by_name("order[billing_name]", wait_time=10)
 
             # fill out order form
             self.browser.fill("order[billing_name]", self.info["namefield"])
