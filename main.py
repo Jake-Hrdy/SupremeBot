@@ -30,53 +30,42 @@ class SupremeBot:
             False
 
     def visit_site(self):
-        try:
-            self.browser.visit("{}{}".format(self.base, self.final_link))   # go to item page
-            if self.info["size"] != "":
-                # make sure size select is loaded
-                self.browser.is_element_present_by_text(self.info["size"], wait_time=10)
-                self.browser.find_option_by_text(self.info["size"]).click() # select correct size
+        self.browser.visit("{}{}".format(self.base, self.final_link))   # go to item page
+        if self.info["size"] != "":
+            # make sure size select is loaded
+            self.browser.is_element_present_by_text(self.info["size"], wait_time=10)
+            self.browser.find_option_by_text(self.info["size"]).click() # select correct size
             
-            # make sure add to cart button is loaded
-            self.browser.is_element_present_by_value("add to cart", wait_time=10)
-            self.browser.find_by_value("add to cart").click() # add to cart
-
-            return True
-        except:
-            print("Could not add to cart.")
-            return False
+        # make sure add to cart button is loaded
+        self.browser.is_element_present_by_value("add to cart", wait_time=10)
+        self.browser.find_by_value("add to cart").click() # add to cart
 
     def checkout(self):
-        try:
-            self.browser.visit("{}{}".format(self.base, self.checkout_ext)) # go to checkout page
+        self.browser.visit("{}{}".format(self.base, self.checkout_ext)) # go to checkout page
 
-            # make sure form is loaded
-            self.browser.is_element_present_by_name("order[billing_name]", wait_time=10)
+        # make sure form is loaded
+        self.browser.is_element_present_by_name("order[billing_name]", wait_time=10)
 
-            # fill out order form
-            self.browser.fill("order[billing_name]", self.info["namefield"])
-            self.browser.fill("order[email]", self.info["emailfield"])
-            self.browser.fill("order[tel]", self.info["phonefield"])
+        # # fill out order form
+        self.browser.fill("order[billing_name]", self.info["namefield"])
+        self.browser.fill("order[email]", self.info["emailfield"])
+        self.browser.fill("order[tel]", self.info["phonefield"])
 
-            self.browser.fill("order[billing_address]", self.info["addressfield"])
-            self.browser.fill("order[billing_address_2]", self.info["apt"])
-            self.browser.fill("order[billing_zip]", self.info["zip"])
-            self.browser.fill("order[billing_city]", self.info["city"])
-            self.browser.select("order[billing_state]", self.info["state"])
-            self.browser.select("order[billing_country]", self.info["country"])
+        self.browser.fill("order[billing_address]", self.info["addressfield"])
+        self.browser.fill("order[billing_address_2]", self.info["apt"])
+        self.browser.fill("order[billing_zip]", self.info["zip"])
+        self.browser.fill("order[billing_city]", self.info["city"])
+        self.browser.select("order[billing_state]", self.info["state"])
+        self.browser.select("order[billing_country]", self.info["country"])
 
-            self.browser.fill("riearmxa", self.info["number"])
-            self.browser.select("credit_card[month]", self.info["month"])
-            self.browser.select("credit_card[year]", self.info["year"])
-            self.browser.fill("credit_card[meknk]", self.info["ccv"])
+        self.browser.fill("riearmxa", self.info["number"])
+        self.browser.select("credit_card[month]", self.info["month"])
+        self.browser.select("credit_card[year]", self.info["year"])
+        self.browser.fill("credit_card[meknk]", self.info["ccv"])
 
-            # check the terms and conditions and complete order
-            self.browser.find_by_css(".terms").click()
-            # self.browser.find_by_value("process payment").click()
-
-            print(info["product"] + " has been purchased.")
-        except:
-            print("Could not checkout.")
+        # check the terms and conditions and complete order
+        self.browser.find_by_css(".terms").click()
+        # self.browser.find_by_value("process payment").click()
 
 
 if __name__ == "__main__":
@@ -122,5 +111,5 @@ if __name__ == "__main__":
     # ================================================================================
     # continue because we found the product
     bot.init_browser()
-    if bot.visit_site():
-        bot.checkout()
+    bot.visit_site()
+    bot.checkout()
