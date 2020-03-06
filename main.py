@@ -32,21 +32,15 @@ class SupremeBot:
     def visit_site(self):
         self.browser.visit("{}{}".format(self.base, self.final_link))   # go to item page
         if self.info["size"] != "":
-            # make sure size select is loaded
-            self.browser.is_element_present_by_text(self.info["size"], wait_time=10)
             self.browser.find_option_by_text(self.info["size"]).click() # select correct size
-            
-        # make sure add to cart button is loaded
-        self.browser.is_element_present_by_value("add to cart", wait_time=10)
         self.browser.find_by_value("add to cart").click() # add to cart
+        # wait for item to actually be added to cart
+        self.browser.is_element_visible_by_xpath("//*[@id='cart']/a[2]", wait_time=10)
 
     def checkout(self):
         self.browser.visit("{}{}".format(self.base, self.checkout_ext)) # go to checkout page
 
-        # make sure form is loaded
-        self.browser.is_element_present_by_name("order[billing_name]", wait_time=10)
-
-        # # fill out order form
+        # fill out order form
         self.browser.fill("order[billing_name]", self.info["namefield"])
         self.browser.fill("order[email]", self.info["emailfield"])
         self.browser.fill("order[tel]", self.info["phonefield"])
